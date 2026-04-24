@@ -1,0 +1,109 @@
+\section{Metodología}
+
+\subsection{Modelo teórico}
+Para la modelización de la galáxia se ha considerado un modelo de capas cilíndricas, cuya aceleración de la gravedad se ha aproximado a la de un plano infinito
+\begin{equation}
+    g(z) = 
+    \begin{cases} 
+        +g & \text{si } z > 0 \\
+        0  & \text{si } z = 0 \\
+        -g & \text{si } z < 0 
+    \end{cases}
+\end{equation}
+y, por lo tanto, el potencial $\Phi$ viene dado por
+\begin{equation}
+	\Phi \ = g |z|
+\end{equation}
+Así, pues se puede determinar su densidad superficial de energía potencial como
+\begin{equation}
+	u \ = \int_{-\infty}^{\infty} \rho \Phi dz
+\end{equation}
+Para ello, se hace falta una expresión que permita obtener el valor de $\rho$. Dicha relación puede ser obtenida a partir de la ecuación de equilibrio hidrostático
+\begin{equation}
+	\frac{1}{\rho}\frac{\partial P}{\partial z} = -g
+\end{equation}
+y cuya presión podemos asumir como isotrópica e igual a $\rho \sigma^2$. Resolviendo la ecuación se obtiene
+\begin{equation}
+	\rho = \rho_0 e^{\frac{-z}{z_0}} \quad ; \quad z_0 = \frac{\sigma^2}{g}
+\end{equation}
+Además, por normalización
+\begin{equation}
+	M_g = \int_{\infty}^{\infty}\rho dV \Rightarrow \rho_0 = \frac{M_g}{2Az_0} = \frac{\Sigma_g}{2z_0}
+\end{equation}
+sumandole a esto, la Ley de Gauss
+\begin{equation}
+	\oint gdA = -4\pi GM \Rightarrow g = 2\pi \Sigma G M
+\end{equation}
+
+Luego se puede determinar la energía potencial total $U$ como 
+\begin{equation}
+	U = uA = M_g g z_0
+\end{equation}
+Si además, consideramos la equipartición de la energía cinética ($E_{turb} \approx E_{CR} \approx E_{mag}$) se tiene que $E_k = \frac{3}{2}M_g \sigma^2$, de modo que la energía total viene dada por
+\begin{equation}
+	E = E_k \ + \ U = \frac{5}{2} M_g \sigma^2
+\end{equation}
+y por lo tanto
+\begin{equation}
+	\sigma^2 = \frac{2}{5}\frac{E}{M_g} \quad ; \quad v_{esc}^2 = \frac{4}{5} \frac{E}{M_g}
+\end{equation}
+
+Adicionalmente, se hace necesario considerar la energía irradiada por el gas. Para ello, se ha implementado la fase de Sedov-Tylor ue consiste en ...... (\textbf{CITAR}). Así, se considera que la energía se conserva durante esta fase y que, por tanto, $R^3v_s^2 = cst$. La solución de Sedov-Tylor, pues, determina que 
+\begin{equation}
+	v_s = \frac{2}{5} \left(\frac{\chi E_0}{\rho_0}\right)^\frac{1}{5} t^{3/5}
+\end{equation}
+y, considerando la presión en la onda de choque como $P_1 = \frac{3}{4} \rho_0 v_s^2$ y la densidad numérica como $n_1 = 4n_0$ podemos, por consecuencia, determinar $t_\Lambda$ que es el tiempo asociado a la función de cooling y viene dado por
+\begin{equation}
+	t_\Lambda = \frac{u_1}{\left| \dot{u_{c,1}} \right|} = \frac{3P_1}{2n_1^2 \Lambda(T)}
+\end{equation}
+Donde $\Lambda$ es la función de cooling y viene dada por 
+\begin{equation}
+	\Lambda(T) \approx \Lambda_a \left(\frac{T}{T_a}\right)^a
+\end{equation}
+donde $\Lambda_a = 10^{22} \  \unit{erg.cm^3/s}$ , $E_0 = 10^{51} \ \unit{erg}$ y $a = -0.9$.
+
+Para obtener el tiempo de cooling $t_cooling$ es preciso hallar el tiempo mínimo cuando la SNR se torna radiativa, de modo que se debe resolver la ecuación
+\begin{equation}
+	\left.\frac{\partial (t \ + \ t_\Lambda)}{\partial t} \right|_{t_c} =  0
+\end{equation}
+De modo que, resolviendo y despejando $t_c$ se obtiene
+\begin{equation}
+	t_c^{\frac{1}{5}(11 \ 6a)} = \frac{81(1 \ - \ a)m_H}{1600n_0\Lambda_a} \left(\frac{9m_H}{80 k_BT_a}\right)^{-a} \left(\frac{16 \chi E_0}{375 n_0 m_H} \right) ^{\frac{2}{5}(1 \ - \ a)}
+\end{equation}
+que viene en (\textbf{CITAR TESIS MARIO}) y a la cual se le ha corregido, visto que después de un analisis dimensional, se ha percebido que faltaba un factor $m_H$.
+
+Ahora que todas estas magnitudes están bien definidas, se puede calcular la EDO para la energía, que viene expresada por 
+\begin{equation}
+	\dot{E_g} = I\left(\frac{2}{5}\frac{E}{M_gas} \ + a \ \frac{1}{2} v_0^2\right) \ + \ \dot{E_{SN}} \ - \ SFR\frac{E}{M_g} \ L
+\end{equation}
+Donde $I$ es el infall de materia, $\dot{E_{SN}} $ la energía intectada por supernova que equivale a $E_0$, $L$ es la perdida por radiación que equivale a $E/t_{cooling}$ y la $SFR$ que es la tasa de formación de estrellas y que puede ser representada por 
+\begin{equation}
+	SFR = \eta \frac{M_g}{t_{ff}}
+\end{equation}
+Donde $\eta$ es la eficiencia de formación de estrellas y que está directamente relacionada con la fracción de masa que colapsa. En este estudio se ha considerado la masa necesaria para el colapso la masa de Jeans
+\begin{equation}
+    M_J = \left( \frac{5 k_\text{B} T}{G \mu m_\text{H}} \right)^{3/2} \left( \frac{3}{4\pi \rho_0} \right)^{1/2}
+\end{equation}
+Además, se puede modelizar la densidad del gas como una log-normal, de modo que la masa que colapsa, es la masa de la cola, cuya dispersión está asociada con la dispersión de velocidades $\sigma^2$. Entretanto, un análisis dinámico de la masa que colapsa está fuera del escopo de este trabajo, de modo que se ha considerado una eficiencia fija $\eta = 0.004$. (\textbf{REVISAR})
+
+Adicionalmente, cabe decir que el tiempo de caída libre $t_{ff}$ se obtiene a partir de la ecuación de equilibrio hidrostático y despreciando la presión, de modo que se tiene
+\begin{equation}
+	t_{ff} = \left(\frac{3\pi}{32G\rho_0}\right)^\frac{1}{2}
+\end{equation}
+
+Finalmente, se puede definir el parámetro de Toomre ($Q$) que fornece información acerca de la estabilidad de una galaxia. DIcho factor viene dado por
+\begin{equation}
+	Q = \frac{c_s \kappa}{\pi G \Sigma}
+\end{equation}
+Donde $c_s$ es la velocidad del sonido y $\kappa$ la frecuencia epiciloidal, definida como
+\begin{equation}
+	\kappa^2 = \frac{2\Omega}{R} \frac{d}{dR}\left(R^2\Omega\right)
+\end{equation}
+
+\subsection{Simulación numérica}
+Para la implementación y verificación del modelo, inicialmente se ha definido una clase que implemente todas las funciones y constantes relevantes para el cálculo de la EDO (\textbf{CITAR}), considerando un Infall constante. Para resolverla, se ha implementado el método de Runge Kutta, que consiste en .......
+
+A continuación, se han hecho cálculos de diagnósticos, es decir, se han obtenido el parámetro de Toomre ($Q$), el ratio de virial $K/U$ y el espesor del disco $z_0/R$. Enseguida se ha modificado la clase, para considerar un Infall exponencial de la forma $I = I_0e^{-t/\tau}$ y se ha considerado una masa inicial de prueba de $2 \times 10^9 \unit{\Msun}$. Después, se ha añadido una verificación intermedia, de modo que se pudiese comparar los valores obtenidos para $M_g, \ M_{*}, \ \Sigma_g, \ z_0, \ \rho_0$ y $t_{ff}$ con los cálculos hechos a mano. Luego, se ha definido un vector de radio $r \in [2,20] \unit{\kpc}$ en intervalos de $1 \unit{\kpc}$ y se han calculado $\log\Sigma_{*} $ y $\log\Sigma_{SFR}$.
+
+A continuación, una vez testeado el modelo, se ha procedido con simular la Via Láctea, cambiando a $\tau = 7000$ y $M_{g,0} = 1 \times 10^6 \unit{\Msun}$, descir despreciable, pero distinta de 0 para evitar errores numéricos. Además, se ha considerado que $\tau$ varia con $r$ de modo que $\tau = 1000 \ + \ 500r$ para cada radio iterado en el bucle.
+
