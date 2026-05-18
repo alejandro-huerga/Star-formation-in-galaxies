@@ -2,15 +2,15 @@
 
 Este proyecto implementa un modelo numérico avanzado para simular la evolución química y dinámica de una galaxia (enfocado en un anillo local a 8 kpc). Utiliza un sistema de ecuaciones diferenciales acopladas para rastrear la masa de gas, la masa estelar y la evolución de la energía turbulenta.
 
-## 🌌 Descripción del Proyecto
+## Descripción del Proyecto
 El código resuelve la evolución de:
 - **Masa de Gas ($M_g$):** Considerando la caída de gas externo (*infall*) y el consumo por formación estelar.
 - **Masa Estelar ($M_s$):** Siguiendo la tasa de formación estelar (SFR) a lo largo del tiempo.
 - **Energía ($E$):** Balance entre la inyección por supernovas y la disipación.
 
 ### Parámetros Físicos Clave:
-- **Eficiencia de Formación Estelar (SFE):** Basada en una distribución log-normal.
-- **Estabilidad del Disco:** Cálculo del parámetro $Q$ de Toomre y el ratio Virial.
+- **Eficiencia de Formación Estelar (SFE):** Constante.
+- **Estabilidad del Disco:** Cálculo del parámetro $Q$ de Toomre y del espesor $z_0$.
 - **Geometría:** Modelo de altura de escala ($z_0$) y densidad central ($\rho_0$).
 
 ## 🛠️ Requisitos e Instalación
@@ -27,3 +27,6 @@ El código produce automáticamente una figura con 3 paneles:
 1. Evolución de masas ($M_g$, $M_s$).
 2. Evolución de la velocidad de dispersión ($\sigma$).
 3. Tasa de formación estelar (SFR).
+4. Evolución del parámetro $Q$
+5. Evolución del espesor $z_0$
+6. Comparación entre $\tau = 1000$ Myr y $\tau = 1 \times 10^9$ Myr 
