@@ -1,32 +1,49 @@
-# Análisis de Formación Estelar - Modelo de Capas Cilíndricas
+# Galactic Chemical Evolution Model of the Milky Way
 
-Este proyecto implementa un modelo numérico avanzado para simular la evolución química y dinámica de una galaxia (enfocado en un anillo local a 8 kpc). Utiliza un sistema de ecuaciones diferenciales acopladas para rastrear la masa de gas, la masa estelar y la evolución de la energía turbulenta.
+Numerical model of galactic chemical evolution implemented in Python,
+developed as an undergraduate research thesis (TFG) at the Autonomous
+University of Madrid (UAM).
 
-## Descripción del Proyecto
-El código resuelve la evolución de:
-- **Masa de Gas ($M_g$):** Considerando la caída de gas externo (*infall*) y el consumo por formación estelar.
-- **Masa Estelar ($M_s$):** Siguiendo la tasa de formación estelar (SFR) a lo largo del tiempo.
-- **Energía ($E$):** Balance entre la inyección por supernovas y la disipación.
+## Description
 
-### Parámetros Físicos Clave:
-- **Eficiencia de Formación Estelar (SFE):** Constante.
-- **Estabilidad del Disco:** Cálculo del parámetro $Q$ de Toomre y del espesor $z_0$.
-- **Geometría:** Modelo de altura de escala ($z_0$) y densidad central ($\rho_0$).
+The model solves the coupled evolution of gas mass, stellar mass, and
+turbulent energy across the Milky Way disk using a radial ring
+decomposition approach. Each annular ring evolves independently,
+allowing radial profile predictions to be compared against observations.
 
-## 🛠️ Requisitos e Instalación
-Para ejecutar el notebook `Analysis_star_formation_1.ipynb`, se recomienda usar un entorno de Python 3.10+ (como Conda).
+Physical processes implemented:
+- **Gas accretion**: exponential infall with radially varying timescale
+- **Star formation**: Schmidt-type law with free-fall time regulation
+- **Supernova feedback**: turbulent energy injection and radiative
+  cooling (Sedov-Taylor cooling timescale)
+- **Vertical disk structure**: scale height z₀ and central density ρ₀
+- **Inside-out formation**: linearly increasing infall timescale with radius
+- **Disk stability**: Toomre-Q diagnostics and gas depletion timescales
 
-Las librerías necesarias son:
-- `numpy`: Cálculos numéricos.
-- `scipy`: Integración de ecuaciones diferenciales (ODE).
-- `matplotlib`: Generación de gráficas de diagnóstico.
-- `astropy`: Gestión de unidades físicas y constantes constantes astronómicas.
+Model predictions are compared against observed Milky Way radial profiles
+(stellar surface density, gas surface density, SFR) from
+Mollá et al. (2015), MNRAS, 451, 3693.
 
-## 📈 Gráficas Generadas
-El código produce automáticamente una figura con 3 paneles:
-1. Evolución de masas ($M_g$, $M_s$).
-2. Evolución de la velocidad de dispersión ($\sigma$).
-3. Tasa de formación estelar (SFR).
-4. Evolución del parámetro $Q$
-5. Evolución del espesor $z_0$
-6. Comparación entre $\tau = 1000$ Myr y $\tau = 1 \times 10^9$ Myr 
+## Requirements
+
+Python 3.10+ recommended.
+
+pip install -r requirements.txt
+
+Dependencies: numpy, scipy, matplotlib, astropy, ipykernel
+
+## Usage
+
+Open and run Analysis_star_formation_1.ipynb in Jupyter.
+The notebook is organized in self-contained sections with markdown
+headers. Each section can be run independently after the initial
+setup cell.
+
+## Output
+
+The notebook generates publication-quality PDF figures including:
+- Mass and velocity dispersion evolution (single ring)
+- Toomre-Q stability and disk scale height evolution
+- Radial profiles of stellar density, gas density, SFR,
+  and gas depletion time compared with Mollá et al. (2015)
+- Comparison between fast and constant infall scenarios
